@@ -1,0 +1,32 @@
+﻿<Window x:Class="LibreriaWPF.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:LibreriaWPF"
+        mc:Ignorable="d"
+        Title="MainWindow" Height="450" Width="800">
+    <Grid>
+
+        <StackPanel>
+            <ListView SelectedItem="{Binding SelectedBook}" ItemsSource="{Binding FilterBooks}">
+                <ListView.View>
+                    <GridView>
+                        <GridViewColumn Header="Название" DisplayMemberBinding="{Binding Title}"/>
+                        <GridViewColumn Header="Содержание" DisplayMemberBinding="{Binding Description}"/>
+                        <GridViewColumn Header="Автор" DisplayMemberBinding="{Binding Author}"/>
+                        <GridViewColumn Header="Электронная" DisplayMemberBinding="{Binding IsEBook}"/>
+                    </GridView>
+                </ListView.View>
+            </ListView>
+
+            <StackPanel>
+                <Button Content="Добавить книгу" Click="NewBook_Click"/>
+                <Button Content="История" Click="BookHistory_Click"/>
+                <Button Content="Удалить книгу" Click="ComplateClick_Button"/>
+                <Button Content="Изменить книгу" Click="Button_Click"/>
+            </StackPanel>
+            
+        </StackPanel>
+    </Grid>
+</Window>

@@ -1,0 +1,22 @@
+﻿<Window x:Class="LibreriaWPF.ChangeBook"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:LibreriaWPF"
+        mc:Ignorable="d"
+        Title="ChangeBook" Height="450" Width="800">
+    <Grid>
+        <StackPanel DataContext="{Binding selectedBook}">
+            <Label Content="Название книги" />
+            <TextBox Text="{Binding Title}"/>
+            <Label Content="Описание книги"/>
+            <TextBox Text="{Binding Description}"/>
+            <Label Content="Автор книги"/>
+            <TextBox Text="{Binding Author}"/>
+            <Label Content="Формат книги"/>
+            <CheckBox Content="Электронная" IsChecked="{Binding IsEBook}"/>
+            <Button Content="Сохранить" Click="ChangeClick_Button"/>
+        </StackPanel>
+    </Grid>
+</Window>
