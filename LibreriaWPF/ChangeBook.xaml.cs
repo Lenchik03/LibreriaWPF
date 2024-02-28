@@ -36,6 +36,7 @@ namespace LibreriaWPF
 
         //    }
         //}
+        public BookModel selectedBook {  get; set; }
         public ChangeBook()
         {
             InitializeComponent();
@@ -47,7 +48,7 @@ namespace LibreriaWPF
         private void ChangeClick_Button(object sender, RoutedEventArgs e)
         {
             MainWindow mainWindow = new MainWindow();
-            var selectedBook = mainWindow.SelectedBook;
+            selectedBook = mainWindow.SelectedBook;
             PropertyChanged?.Invoke(this,
                     new PropertyChangedEventArgs(nameof(selectedBook)));
             Close();

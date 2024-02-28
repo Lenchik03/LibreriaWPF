@@ -21,13 +21,15 @@ namespace LibreriaWPF
     /// </summary>
     public partial class HistoryBooks : Window, INotifyPropertyChanged
     {
+        public static ObservableCollection<BookModel> Books { get; set; } = BooksBase.Books;
         public HistoryBooks()
         {
             InitializeComponent();
             BooksBase.GetInstance();
+            BooksBase.Initialize();
             DataContext = this;
         }
-
+       
         public event PropertyChangedEventHandler? PropertyChanged;
     }
 }

@@ -1,7 +1,9 @@
 ﻿using System.Collections.ObjectModel;
 using System.ComponentModel;
+using System.IO;
 using System.Net.NetworkInformation;
 using System.Text;
+using System.Text.Json;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
@@ -12,6 +14,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using static System.Reflection.Metadata.BlobBuilder;
 
 namespace LibreriaWPF
 {
@@ -22,18 +25,22 @@ namespace LibreriaWPF
     {
         public MainWindow()
         {
+          
             InitializeComponent();
             BooksBase.GetInstance();
+            BooksBase.Initialize();
+            ViewBooks();
             DataContext = this;
 
         }
+
         private void ViewBooks()
         {
             FilterBooks = new ObservableCollection<BookModel>(BooksBase.Books.Where(filterTask => filterTask.IsEBook == true && filterTask.Status == ""));
             Signal(nameof(FilterBooks));
         }
 
-        public ObservableCollection<BookModel> FilterBooks { get; set; }
+        public ObservableCollection<BookModel> FilterBooks { get; set; } 
         public BookModel SelectedBook { get; set; }
 
 

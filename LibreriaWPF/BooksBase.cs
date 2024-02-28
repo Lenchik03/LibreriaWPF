@@ -11,10 +11,14 @@ namespace LibreriaWPF
 {
     public class BooksBase
     {
-        public static ObservableCollection<BookModel> Books { get; set; }
+        public static ObservableCollection<BookModel> Books { get; set; } = new ObservableCollection<BookModel>();
         static BooksBase instance;
 
         private BooksBase()
+        {
+           
+        }
+        public static void Initialize()
         {
             using (FileStream fs = new FileStream("books.json", FileMode.OpenOrCreate))
             {
@@ -24,7 +28,6 @@ namespace LibreriaWPF
                     Books = new ObservableCollection<BookModel>();
             }
         }
-
         public static void SaveBook()
         {
             using (FileStream fs = new FileStream("books.json", FileMode.OpenOrCreate))
@@ -34,11 +37,11 @@ namespace LibreriaWPF
         }
         public static BooksBase GetInstance()
         {
-            {
+            
                 if (instance == null)
                     instance = new BooksBase();
                 return instance;
-            }
+            
         }
     }
 }
