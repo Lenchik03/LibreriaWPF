@@ -13,6 +13,7 @@ namespace LibreriaWPF
     {
         public static ObservableCollection<BookModel> Books { get; set; } = new ObservableCollection<BookModel>();
         static BooksBase instance;
+        int id = 0;
 
         private BooksBase()
         {
@@ -34,6 +35,19 @@ namespace LibreriaWPF
             {
                 JsonSerializer.Serialize(fs, Books);
             }
+        }
+
+        public void NewBook(BookModel book)
+        {
+            if (book.IsEBook == false)
+                book.BookFormat = "Электронная";
+            else
+                book.BookFormat = "Бумажная";
+            if (book.IsEBook == false)
+                book.Count = 0;
+            book.GUID = Guid.NewGuid().ToString();
+            Books.Add(book);
+            SaveBook();
         }
         public static BooksBase GetInstance()
         {

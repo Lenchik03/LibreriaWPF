@@ -5,28 +5,59 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:LibreriaWPF"
         mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="800">
+        Title="" Height="460" Width="800">
     <Grid>
 
-        <StackPanel>
-            <ListView SelectedItem="{Binding SelectedBook}" ItemsSource="{Binding FilterBooks}">
-                <ListView.View>
-                    <GridView>
-                        <GridViewColumn Header="Название" DisplayMemberBinding="{Binding Title}"/>
-                        <GridViewColumn Header="Содержание" DisplayMemberBinding="{Binding Description}"/>
-                        <GridViewColumn Header="Автор" DisplayMemberBinding="{Binding Author}"/>
-                        <GridViewColumn Header="Электронная" DisplayMemberBinding="{Binding IsEBook}"/>
-                    </GridView>
-                </ListView.View>
-            </ListView>
-
+        <StackPanel Background="#FFF7C1CD">
             <StackPanel>
-                <Button Content="Добавить книгу" Click="NewBook_Click"/>
-                <Button Content="История" Click="BookHistory_Click"/>
-                <Button Content="Удалить книгу" Click="ComplateClick_Button"/>
-                <Button Content="Изменить книгу" Click="Button_Click"/>
+                <Button Content="Выйти" Height="25" Width="50" HorizontalAlignment="Right" Click="LogOutClick"/>
             </StackPanel>
-            
+            <TabControl Background="#FFF7C1CD">
+                <TabItem Header="Главная" Height="30" Background="#FFEC7A99">
+
+                    <StackPanel Background="#FFF7C1CD" >
+
+                        <ScrollViewer>
+                            <ListView SelectedItem="{Binding SelectedBook}" ItemsSource="{Binding FilterBooks}" MinHeight="300">
+                                <ListView.View>
+                                    <GridView>
+                                        <GridViewColumn Header="Название" DisplayMemberBinding="{Binding Title}"/>
+                                        <GridViewColumn Header="Содержание" DisplayMemberBinding="{Binding Description}"/>
+                                        <GridViewColumn Header="Автор" DisplayMemberBinding="{Binding Author}"/>
+                                        <GridViewColumn Header="Формат" DisplayMemberBinding="{Binding BookFormat}"/>
+                                        <GridViewColumn Header="Кол-во" DisplayMemberBinding="{Binding Count}"/>
+                                    </GridView>
+                                </ListView.View>
+                            </ListView>
+                        </ScrollViewer>
+                        <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
+                            <Button Content="Добавить книгу" Click="NewBook_Click" Background="#FFEC7A99"/>
+                            <Button Content="Удалить книгу" Click="ComplateClick_Button" Background="#FFEC7A99"/>
+                            <Button Content="Изменить книгу" Click="Button_Click" Background="#FFEC7A99"/>
+                            <Button Content="Выдать книгу" Click="GiveBookClick" Background="#FFEC7A99"/>
+                        </StackPanel>
+
+                    </StackPanel>
+                </TabItem>
+                <TabItem Header="Выданные книги" Height="30" Background="#FFEC7A99">
+                    <StackPanel Background="#FFF7C1CD" >
+
+                        <ScrollViewer>
+                            <ListView SelectedItem="{Binding SelectedGiveBook}" MouseDoubleClick="ReadersBookClick" ItemsSource="{Binding Books}" MinHeight="300">
+                                <ListView.View>
+                                    <GridView>
+                                        <GridViewColumn Header="Название" DisplayMemberBinding="{Binding Title}"/>
+                                        <GridViewColumn Header="Автор" DisplayMemberBinding="{Binding Author}"/>
+                                        <GridViewColumn Header="Формат" DisplayMemberBinding="{Binding BookFormat}"/>
+                                    </GridView>
+                                </ListView.View>
+                            </ListView>
+                        </ScrollViewer>
+                        
+
+                    </StackPanel>
+                </TabItem>
+            </TabControl>
         </StackPanel>
     </Grid>
 </Window>

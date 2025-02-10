@@ -25,6 +25,7 @@ namespace LibreriaWPF
     public partial class NewBook : Window, INotifyPropertyChanged
     {
         public BookModel Book { get; set; } = new BookModel();
+        private int id = 0;
         public NewBook()
         {
             InitializeComponent();
@@ -35,10 +36,10 @@ namespace LibreriaWPF
 
         public event PropertyChangedEventHandler? PropertyChanged;
 
+        
         private void AddClick_Button(object sender, RoutedEventArgs e)
         {
-            BooksBase.Books.Add(Book);
-            BooksBase.SaveBook();
+            BooksBase.GetInstance().NewBook(Book);
             Close();
         }
     }

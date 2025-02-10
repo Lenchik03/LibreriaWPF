@@ -1,0 +1,69 @@
+﻿<Window x:Class="LibreriaWPF.ReaderVindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:LibreriaWPF"
+        mc:Ignorable="d"
+        Title="ReaderVindow" Height="450" Width="800">
+    <StackPanel Background="#FFF7C1CD" >
+        <StackPanel  Background="#FFF6A4B2">
+            <Button Content="Выйти" Height="25" Width="50" HorizontalAlignment="Right" Click="LogOutClick"/>
+            <TabControl Background="#FFF39BB0">
+                <TabItem Header="Книги" Background="#FFEC7A99">
+                    <StackPanel>
+                        <ScrollViewer>
+                        <ListView SelectedItem="{Binding SelectedBook}" ItemsSource="{Binding Books}" MinHeight="300">
+                            <ListView.View>
+                                <GridView>
+                                    <GridViewColumn Header="Название" DisplayMemberBinding="{Binding Title}"/>
+                                    <GridViewColumn Header="Содержание" DisplayMemberBinding="{Binding Description}"/>
+                                    <GridViewColumn Header="Автор" DisplayMemberBinding="{Binding Author}"/>
+                                    <GridViewColumn Header="Формат" DisplayMemberBinding="{Binding BookFormat}"/>
+                                    <GridViewColumn Header="Кол-во" DisplayMemberBinding="{Binding Count}"/>
+                                </GridView>
+                            </ListView.View>
+                        </ListView>
+                        </ScrollViewer>
+                        <Button Content="Взять почитать" Click="GiveMeBookClick" Background="#FFEC7A99"/>
+                    </StackPanel>
+                    
+                </TabItem>
+                <TabItem Header="Мои книги" Background="#FFEC7A99">
+                    <StackPanel>
+                        <ScrollViewer>
+                        <ListView SelectedItem="{Binding SelectedMyBook}" ItemsSource="{Binding MyBooks}" MinHeight="300">
+                            <ListView.View>
+                                <GridView>
+                                    <GridViewColumn Header="Название" DisplayMemberBinding="{Binding Title}"/>
+                                    <GridViewColumn Header="Содержание" DisplayMemberBinding="{Binding Description}"/>
+                                    <GridViewColumn Header="Автор" DisplayMemberBinding="{Binding Author}"/>
+                                    <GridViewColumn Header="Формат" DisplayMemberBinding="{Binding BookFormat}"/>
+                                </GridView>
+                            </ListView.View>
+                        </ListView>
+                        </ScrollViewer>
+                        <Button Content="Отправить в архив" Click="HistoryBook" Width="150" Background="#FFEC7A99"/>
+                    </StackPanel>
+                </TabItem>
+                <TabItem Header="Архив" Background="#FFEC7A99">
+                    <ScrollViewer>
+                        <ListView ItemsSource="{Binding HistoryBooks}" MinHeight="300">
+                            <ListView.View>
+                                <GridView>
+                                    <GridViewColumn Header="Название" DisplayMemberBinding="{Binding Title}"/>
+                                    <GridViewColumn Header="Содержание" DisplayMemberBinding="{Binding Description}"/>
+                                    <GridViewColumn Header="Автор" DisplayMemberBinding="{Binding Author}"/>
+                                    <GridViewColumn Header="Формат" DisplayMemberBinding="{Binding BookFormat}"/>
+                                </GridView>
+                            </ListView.View>
+                        </ListView>
+
+                    </ScrollViewer>
+                </TabItem>
+
+            </TabControl>
+        </StackPanel>
+        
+        </StackPanel>
+</Window>

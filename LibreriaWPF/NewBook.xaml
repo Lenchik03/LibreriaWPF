@@ -7,7 +7,7 @@
         mc:Ignorable="d"
         Title="NewBook" Height="450" Width="800">
     <Grid>
-        <StackPanel DataContext="{Binding Book}">
+        <StackPanel DataContext="{Binding Book}" Margin="20">
             <Label Content="Название книги" />
             <TextBox Text="{Binding Title}"/>
             <Label Content="Описание книги"/>
@@ -15,7 +15,9 @@
             <Label Content="Автор книги"/>
             <TextBox Text="{Binding Author}"/>
             <Label Content="Формат книги"/>
-            <CheckBox Content="Электронная" IsChecked="{Binding IsEBook}"/>
+            <CheckBox Content="Бумажная" IsChecked="{Binding IsEBook}"/>
+            <Label Content="Количество книг"/>
+            <TextBox Text="{Binding Count}" IsEnabled="{Binding IsEBook}"/>
             <Button Content="Добавить" Click="AddClick_Button"/>
         </StackPanel>
         
