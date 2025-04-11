@@ -13,9 +13,9 @@
         <Label Content="Придумайте имя пользователя" Margin="5"/>
         <TextBox Text="{Binding User.UserName}" Margin="5"/>
         <Label Content="Придумайте пароль" Margin="5"/>
-        <TextBox Text="{Binding User.Password}" Margin="5"/>
+        <PasswordBox x:Name="password1" Margin="5"/>
         <Label Content="Повторите пароль" Margin="5"/>
-        <TextBox Text="{Binding RepeatPass}" Margin="5"/>
+        <PasswordBox x:Name="password2" Margin="5"/>
         <Button Content="Зарегистрироваться" Width="170" Click="RefistrationClick"/>
         <StackPanel Orientation="Horizontal" Margin="0,7,0,0" HorizontalAlignment="Center">
             <Label Content="Уже есть аккаунт?"/>

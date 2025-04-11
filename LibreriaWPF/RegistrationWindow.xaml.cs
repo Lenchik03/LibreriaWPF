@@ -22,6 +22,26 @@ namespace LibreriaWPF
     /// </summary>
     public partial class RegistrationWindow : Window, INotifyPropertyChanged
     {
+        public string Password1
+        {
+            get { return password1.Password; }
+            set
+            {
+                password1.Password = value;
+                Signal();
+            }
+        }
+
+        public string Password2
+        {
+            get { return password2.Password; }
+            set
+            {
+                password2.Password = value;
+                Signal();
+            }
+        }
+
         private User user;
         private string repeatPass;
         private string password;
@@ -37,19 +57,19 @@ namespace LibreriaWPF
             }
         }
         public ObservableCollection<User> Users { get; set; }
-        public string RepeatPass 
-        { get => repeatPass;
-            set { repeatPass = value;
-                Signal();
-            }
-        }
-        public string Password
-        {
-            get => password;
-            set { password = value;
-                Signal();
-            }
-        }
+        //public string RepeatPass 
+        //{ get => repeatPass;
+        //    set { repeatPass = value;
+        //        Signal();
+        //    }
+        //}
+        //public string Password
+        //{
+        //    get => password;
+        //    set { password = value;
+        //        Signal();
+        //    }
+        //}
         public string UserName
         {
             get => userName;
@@ -79,7 +99,7 @@ namespace LibreriaWPF
 
         private void RefistrationClick(object sender, RoutedEventArgs e)
         {
-            if (User.UserName != null && User.Password !=null && User.FIO != null)
+            if (User.UserName != null && Password1 != null && Password2 !=null && User.FIO != null)
             {
                 var user = UsersBase.Users.FirstOrDefault(s => s.UserName == User.UserName);
                 if (user != null)
@@ -88,8 +108,9 @@ namespace LibreriaWPF
                 }
                 else
                 {
-                    if (RepeatPass == User.Password)
+                    if (Password1 == Password2)
                     {
+                        User.Password = Password1;
                         UsersBase.GetInstance().NewUser(User);
                         MessageBox.Show("Вы успешно зарегистрировались");
                         LoginWindow loginWindow = new LoginWindow();

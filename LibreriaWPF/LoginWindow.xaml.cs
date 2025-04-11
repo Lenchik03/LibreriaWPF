@@ -22,7 +22,15 @@ namespace LibreriaWPF
     /// </summary>
     public partial class LoginWindow : Window, INotifyPropertyChanged
     {
-
+        public string Password
+        {
+            get { return password.Password; }
+            set
+            {
+                password.Password = value;
+            }
+        }
+       
         public User User { get; set; } = new();
         public ObservableCollection<User> Users { get; set; }
         public LoginWindow()
@@ -54,7 +62,7 @@ namespace LibreriaWPF
 
         private void SignInClick(object sender, RoutedEventArgs e)
         {
-            if(User.UserName == "123" && User.Password == "123")
+            if(User.UserName == "KooperRezzko" && Password == "50651650051021Q")
             {
                 MainWindow mainWindow = new MainWindow();
                 mainWindow.Show();
@@ -62,12 +70,17 @@ namespace LibreriaWPF
                 return;
             }
 
-            var user = Users.FirstOrDefault(s=> s.UserName == User.UserName && User.Password == User.Password);
+            var user = Users.FirstOrDefault(s=> s.UserName == User.UserName);
+            
             if(user != null)
             {
-                ReaderVindow readerVindow = new ReaderVindow(user);
-                readerVindow.Show();
-                Close();
+                if (user.Password == Md5.HashPassword(Password))
+                {
+                    ReaderVindow readerVindow = new ReaderVindow(user);
+                    readerVindow.Show();
+                    Close();
+                }
+                
             }
             else
             {

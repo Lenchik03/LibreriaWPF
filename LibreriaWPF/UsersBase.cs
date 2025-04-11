@@ -32,8 +32,10 @@ namespace LibreriaWPF
 
         public void NewUser(User user)
         {
+            var pass = user.Password;
             user.GUID = Guid.NewGuid().ToString();
             user.RoleId = 2;
+            user.Password = Md5.HashPassword(pass);
             Users.Add(user);
             SaveUser();
         }
